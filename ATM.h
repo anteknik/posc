@@ -5,7 +5,7 @@
 #include <windows.h>
 
 
-// Control IDs
+// Control IDs remain mostly valid, will add MENU IDs
 #define IDC_DISPLAY 100
 #define IDC_BUTTON_0 200
 #define IDC_BUTTON_1 201
@@ -17,31 +17,42 @@
 #define IDC_BUTTON_7 207
 #define IDC_BUTTON_8 208
 #define IDC_BUTTON_9 209
-#define IDC_BUTTON_ADD 210
-#define IDC_BUTTON_SUB 211
-#define IDC_BUTTON_MUL 212
-#define IDC_BUTTON_DIV 213
-#define IDC_BUTTON_EQU 214
-#define IDC_BUTTON_CLR 215
 
-class Calculator {
+#define IDC_BUTTON_ENTER 214
+#define IDC_BUTTON_CLEAR 215
+
+// Menu Buttons
+#define IDC_BTN_MENU_1 301
+#define IDC_BTN_MENU_2 302
+#define IDC_BTN_MENU_3 303
+#define IDC_BTN_MENU_4 304
+
+enum ATMState { STATE_LOGIN, STATE_MENU };
+
+class ATM {
 public:
-  Calculator();
+  ATM();
   int Run(HINSTANCE hInstance, int nCmdShow);
 
 private:
   HWND hDisplay;
-  double currentValue;
-  double lastValue;
-  int currentOp; // 0: None, 1: Add, 2: Sub, 3: Mul, 4: Div
-  bool newNumber;
+  HBRUSH hBlueBrush;
+  ATMState currentState;
+  std::string currentPin;
 
   static LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam,
                                      LPARAM lParam);
   LRESULT HandleMessage(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-  void CreateControls(HWND hwnd);
+
+  void ShowLoginScreen(HWND hwnd);
+  void ShowMenuScreen(HWND hwnd);
+  void ClearScreen(HWND hwnd);
+
   void AddButton(HWND hwnd, const char *text, int x, int y, int w, int h,
                  int id);
+  void AddLabel(HWND hwnd, const char *text, int x, int y, int w, int h,
+                int fontSize = 20, bool center = false);
+
   void UpdateDisplay();
-  void OnCommand(int id);
+  void OnCommand(HWND hwnd, int id);
 };

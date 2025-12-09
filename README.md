@@ -28,7 +28,7 @@ A simple Calculator application for Windows, built using C++ and the native Win3
 Run the compiled executable:
 
 ```bash
-./calc.exe
+./menu.exe
 ```
 
 A calculator window will appear.
