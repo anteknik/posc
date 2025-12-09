@@ -4,4 +4,5 @@ project(test_cplus)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(menu WIN32 main.cpp ATM.cpp)
+include_directories(library)
+add_executable(menu WIN32 src/main.cpp src/ATM.cpp)

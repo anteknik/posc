@@ -1,6 +1,6 @@
-# Win32 C++ Calculator
+# Win32 C++ ATM 
 
-A simple Calculator application for Windows, built using C++ and the native Win32 API.
+A simple ATM application for Windows, built using C++ and the native Win32 API.
 
 ## Features
 - Basic arithmetic operations: Addition, Subtraction, Multiplication, Division.
@@ -22,6 +22,12 @@ A simple Calculator application for Windows, built using C++ and the native Win3
     ```bash
     cmake --build .
     ```
+    Automated Tests
+    Run cmake --build . --clean-first to ensure the build system picks up the new paths.
+    
+    ```bash
+    cmake --build . --clean-first
+    ```
 
 ## Run Instructions
 
@@ -31,4 +37,4 @@ Run the compiled executable:
 ./menu.exe
 ```
 
-A calculator window will appear.
+ATM Application window will appear.
