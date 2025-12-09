@@ -1,0 +1,15 @@
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+CTestTestfile.cmake
+
+# Binaries
+*.exe
+*.obj
+*.o
+
+# Editors
+.vscode/
+.idea/
