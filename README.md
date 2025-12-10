@@ -1,40 +1,75 @@
-# Win32 C++ ATM 
+# Proyek Simulasi ATM
 
-A simple ATM application for Windows, built using C++ and the native Win32 API.
+Aplikasi simulasi ATM berbasis Desktop (Win32 API) dengan fitur Login, Menu Interaktif, dan Suara.
 
-## Features
-- Basic arithmetic operations: Addition, Subtraction, Multiplication, Division.
-- Native Windows GUI (no external UI frameworks required).
-- Built with CMake and MinGW.
+## Prasyarat (Prerequisites)
 
-## Prerequisites
-- **CMake**: Build system generator.
-- **MinGW**: GCC compiler for Windows.
+Sebelum memulai, pastikan Anda telah menginstal tools berikut:
 
-## Build Instructions
+1.  **Visual Studio Code**: [Download disini](https://code.visualstudio.com/)
+2.  **CMake**: [Download disini](https://cmake.org/download/)
+3.  **Compiler C++**:
+    *   **Windows**: MinGW-w64 (melalui MSYS2 atau installer standalone)
+    *   **Linux**: GCC/G++
+4.  **Ekstensi VS Code**:
+    *   C/C++ (Microsoft)
+    *   CMake Tools (Microsoft)
 
-1.  Open a terminal in the project directory.
-2.  Configure the project with CMake:
-    ```bash
-    cmake -G "MinGW Makefiles" .
+---
+
+## Panduan Pengaturan (Setup Guide)
+
+### 1. Windows (MinGW/GCC)
+
+1.  **Install MinGW-w64**:
+    *   Cara termudah adalah menggunakan MSYS2 ([hype link](https://www.msys2.org/)).
+    *   Jalankan terminal MSYS2 dan ketik: `pacman -S mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake make`
+2.  **Environment Variables**:
+    *   Tambahkan path bin MinGW ke System PATH Windows (contoh: `C:\msys64\mingw64\bin`).
+    *   Cek instalasi di terminal (PowerShell/CMD) dengan: `g++ --version` dan `cmake --version`.
+3.  **Konfigurasi VS Code**:
+    *   Buka folder proyek ini di VS Code.
+    *   Install ekstensi **CMake Tools**.
+    *   Buka Command Palette (`Ctrl+Shift+P`) -> ketik `CMake: Scan for Kits`.
+    *   Pilih kit `GCC` atau `MinGW` yang terdeteksi.
+
+### 2. Linux (Ubuntu/Debian)
+
+1.  **Install Tools**:
+    *   Buka terminal dan jalankan:
+        ```bash
+        sudo apt update
+        sudo apt install build-essential cmake
+        ```
+2.  **Konfigurasi VS Code**:
+    *   Buka folder proyek di VS Code.
+    *   Install ekstensi **CMake Tools**.
+    *   Ekstensi biasanya otomatis mendeteksi GCC sistem. Jika tidak, jalankan `CMake: Scan for Kits`.
+
+---
+
+## Cara Build dan Run
+
+### Menggunakan VS Code (CMake Tools)
+1.  Klik tombol **Build** di status bar bawah VS Code (atau `F7`).
+2.  Klik tombol **Run/Play** di status bar bawah (atau `Shift+F5`).
+
+### Menggunakan Terminal Manual
+
+1.  Buat folder build:
+    ```sh
+    cmake -B build -S .
     ```
-3.  Build the executable:
-    ```bash
-    cmake --build .
+2.  Compile project:
+    ```sh
+    cmake --build build
     ```
-    Automated Tests
-    Run cmake --build . --clean-first to ensure the build system picks up the new paths.
-    
-    ```bash
-    cmake --build . --clean-first
-    ```
+3.  Jalankan aplikasi:
+    *   **Windows**: `.\build\ProyekSaya.exe`
+    *   **Linux**: `./build/ProyekSaya` (Catatan: Fitur GUI Win32 hanya bekerja di Windows atau via Wine)
 
-## Run Instructions
+## Struktur Project
 
-Run the compiled executable:
-
-```bash
-./menu.exe
-```
-
-ATM Application window will appear.
+*   `src/`: Kode implementasi (.cpp)
+*   `library/`: Header files (.h)
+*   `CMakeLists.txt`: Konfigurasi build system
